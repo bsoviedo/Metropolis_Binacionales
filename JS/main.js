@@ -9,6 +9,7 @@ function displaywelcome() {
 
 }
 
+//Map section
 let center = [4, -74]
 
 const map = L.map('mapid', {
@@ -18,6 +19,7 @@ const map = L.map('mapid', {
 
 const base = L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',).addTo(map)
 
+//Functions for the PopUp
 function GetFullZoom() {
     map.setView(center, 3)
     map.closePopup();
@@ -27,14 +29,8 @@ function ClosePopup() {
     map.closePopup()
 }
 
-let tooltip = L.tooltip({
-    direction: 'center',
-    permanent: true,
-    interactive: true,
-    noWrap: true,
-    opacity: 0.9
-})
 
+//Layer cities with an div Icon for display the label
 const city = L.geoJson(cities, {
     pointToLayer: function (feature, latlng) {
         let lat = latlng.lat + 0.002
@@ -50,6 +46,7 @@ const city = L.geoJson(cities, {
     }
 })
 
+//Load layer
 const geoJsonLayer = L.geoJson(ciudades, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
@@ -91,6 +88,7 @@ const geoJsonLayer = L.geoJson(ciudades, {
     },
 }).addTo(map)
 
+//Add event to remove the labels when the zoom is less than 10
 map.on('zoomend', function (e) {
     let zoomlevel = map.getZoom();
     if (zoomlevel < 10) {
@@ -100,8 +98,3 @@ map.on('zoomend', function (e) {
 })
 
 
-
-
-/* const countries_geojson = L.geoJson(data).addTo(map)
-
-L.control.layers([base, countries_geojson, geoJsonLayer]).addTo(map)*/
