@@ -23,3 +23,9 @@ h1{
         font-size: 18px;
         margin-top: 8px;
     }
+
+.label{
+    text-align: center;
+    background-color: black;
+    color: white
+}

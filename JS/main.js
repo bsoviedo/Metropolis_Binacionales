@@ -27,9 +27,28 @@ function ClosePopup() {
     map.closePopup()
 }
 
+let tooltip = L.tooltip({
+    direction: 'center',
+    permanent: true,
+    interactive: true,
+    noWrap: true,
+    opacity: 0.9
+})
 
-
-
+const city = L.geoJson(cities, {
+    pointToLayer: function (feature, latlng) {
+        let lat = latlng.lat + 0.002
+        let lng = latlng.lng - 0.003
+        let position = [lat, lng]
+        return L.marker(position, {
+            icon: L.divIcon({
+                iconSize: null,
+                className: 'label',
+                html: '<div>' + feature.properties.Cities + '</div>'
+            })
+        })
+    }
+})
 
 const geoJsonLayer = L.geoJson(ciudades, {
     pointToLayer: function (feature, latlng) {
@@ -61,15 +80,26 @@ const geoJsonLayer = L.geoJson(ciudades, {
         }
 
         layer.on('click', function (e) {
+
             let lat = e.latlng.lat + 0.02
             let lng = e.latlng.lng
 
             let CenterPopup = [lat, lng]
-            map.setView(CenterPopup, 13)
-
+            map.setView(CenterPopup, 13.5)
+            city.addTo(map)
         })
     },
 }).addTo(map)
+
+map.on('zoomend', function (e) {
+    let zoomlevel = map.getZoom();
+    if (zoomlevel < 10) {
+        map.removeLayer(city)
+    }
+
+})
+
+
 
 
 /* const countries_geojson = L.geoJson(data).addTo(map)
