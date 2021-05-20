@@ -36,13 +36,27 @@ const city = L.geoJson(cities, {
         let lat = latlng.lat + 0.002
         let lng = latlng.lng - 0.003
         let position = [lat, lng]
-        return L.marker(position, {
-            icon: L.divIcon({
-                iconSize: null,
-                className: 'label',
-                html: '<div>' + feature.properties.Cities + '</div>'
+        if (feature.properties.Habs === null) {
+            return L.marker(position, {
+                icon: L.divIcon({
+                    iconSize: null,
+                    className: 'label',
+                    html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
+                        '</td> </tr> <tr> <td> Población: </td> <td>  No hay datos disponibles </td> </tr> </table> </div> '
+                })
             })
-        })
+
+        } else {
+            return L.marker(position, {
+                icon: L.divIcon({
+                    iconSize: null,
+                    className: 'label',
+                    html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
+                        '</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Habs + ' Habs </td> </tr> </table> </div> '
+                })
+            })
+        }
+
     }
 })
 
@@ -53,7 +67,7 @@ const geoJsonLayer = L.geoJson(ciudades, {
             icon: L.AwesomeMarkers.icon({
                 icon: 'home',
                 prefix: 'glyphicon',
-                markerColor: 'darkred',
+                markerColor: 'blue'
 
             })
         });
@@ -81,9 +95,40 @@ const geoJsonLayer = L.geoJson(ciudades, {
             let lat = e.latlng.lat + 0.02
             let lng = e.latlng.lng
 
-            let CenterPopup = [lat, lng]
-            map.setView(CenterPopup, 13.5)
-            city.addTo(map)
+            const { Name } = e.target.feature.properties
+
+            console.log(Name)
+
+            if (Name === "Paso Canoas-Capacho") {
+                let lat = e.latlng.lat - 0.003
+                let CenterPopup = [lat, lng]
+                map.setView(CenterPopup, 16)
+                city.addTo(map)
+            } else if (Name === "Tripartito") {
+                let lat = e.latlng.lat
+                let CenterPopup = [lat, lng]
+                map.setView(CenterPopup, 17)
+                city.addTo(map)
+            } else if (Name === "Arauquita-La victoria") {
+                let lat = e.latlng.lat
+                let CenterPopup = [lat, lng]
+                map.setView(CenterPopup, 14.5)
+                city.addTo(map)
+            }
+            else if (Name === "Villa del rosario-San Antono de Tachira" || Name === "Acegua-Acegua"
+                || Name == "Santa Elena" || Name === "Puerto Santander") {
+                let lat = e.latlng.lat
+                let CenterPopup = [lat, lng]
+                map.setView(CenterPopup, 15.5)
+                city.addTo(map)
+            } else {
+                let CenterPopup = [lat, lng]
+                map.setView(CenterPopup, 13.5)
+                city.addTo(map)
+
+            }
+
+
         })
     },
 }).addTo(map)
@@ -91,7 +136,7 @@ const geoJsonLayer = L.geoJson(ciudades, {
 //Add event to remove the labels when the zoom is less than 10
 map.on('zoomend', function (e) {
     let zoomlevel = map.getZoom();
-    if (zoomlevel < 10) {
+    if (zoomlevel < 13) {
         map.removeLayer(city)
     }
 
