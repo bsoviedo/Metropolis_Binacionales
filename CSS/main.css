@@ -1,6 +1,16 @@
+@font-face{
+    font-family: 'onu';
+    src: url('../font/Raleway-Black.ttf')
+}
+@font-face {
+    font-family: 'barlow';
+    src: url('../font/Barlow-Regular.ttf');
+}
+
 html{
     margin:0;
     padding:0;
+
 }
 
 body{
@@ -8,10 +18,12 @@ body{
     padding:0;
 }
 
-@font-face{
-    font-family: 'onu';
-    src: url('/font/FuturaLT-ExtraBold.ttf')
+.swal2-content{
+    font-family: barlow
 }
+
+
+
 
 header{
     width:100%;
@@ -24,20 +36,23 @@ header{
 #mapid{
     width:100%;
     height: 92vh;
+    font-family: 'barlow';
 }
 
 #title{
+    font-family: 'onu';
     display:inline-block;
     color:rgb(255, 255, 255);
     font-size: 1.5rem;
     text-align: right;
     padding-top:1%;
     padding-right: 0.3%; 
-    padding-left: 40%;
+    padding-left: 27%;
 
 }
 h1{
     text-align: center;
+    font-family: 'barlow';
 }
 
 .awesome-marker i {
@@ -48,13 +63,15 @@ h1{
 .label{
     text-align: center;
     background-color: rgb(255, 0, 0);
-    color: rgb(255, 255, 255)
+    color: rgb(255, 255, 255);
+    font-family: 'barlow';
 }
 
 #div_table{
     text-align: center;
     background-color: rgb(255, 0, 0);
-    color: rgb(255, 255, 255)
+    color: rgb(255, 255, 255);
+    font-family: 'barlow';
 
 }
 
@@ -62,6 +79,6 @@ h1{
     display: inline-block;
     width: 10%;
     height: 80%;
-    padding-bottom: 0.6%;
+    padding-bottom: 1%;
     padding-left: 0.5%
 }
