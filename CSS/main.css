@@ -25,9 +25,10 @@ body{
 header{
     width:100%;
     height: 10%;
-    background-color: rgb(3, 41, 68);
+    background-color: rgb(255, 255, 255);
     font-family: "onu";
     font-size: 5%;
+    border-bottom: 1px solid rgb(3, 41, 68);
 }
 
 #mapid{
@@ -40,19 +41,20 @@ header{
 footer{
     width:100%;
     height: 10%;
-    background-color: rgb(3, 41, 68);
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid rgb(3, 41, 68);
 }
 
 
 #title{    
     font-family: 'onu';
-    color:rgb(255, 255, 255);
+    color:rgb(3, 41, 68);
     font-size: 1rem;
     padding-top: 2%
 
 
 }
-h1{
+h1, h2{
     text-align: center;
     font-family: 'barlow';
 }
@@ -92,6 +94,7 @@ h1{
 @media all and (min-width: 700px){
     #title{
         font-size: 0.8rem
+        
     }
 
     .logofooter{
@@ -108,12 +111,12 @@ h1{
 #title{
         font-family: 'onu';
     display:inline-block;
-    color:rgb(255, 255, 255);
+    color:rgb(3, 41, 68);
     font-size: 1rem;
     text-align: right;
-    padding-top:0%;
+    padding-top:5px;
     padding-right: 0.3%; 
-    padding-left: 28%;
+    padding-left: 45%;
 }
 
 .logo{
@@ -121,8 +124,7 @@ h1{
     width: 10%;
     height: 100%;
     padding-left: 0.5% ;
-    padding-top:15px;
-    padding-bottom: 18px
+    padding-bottom: 35
 
     
 }
@@ -130,7 +132,7 @@ h1{
 header{
     width:100%;
     height: 8vh;
-    background-color: rgb(3, 41, 68);
+    background-color: rgb(255, 255, 255);
     font-family: "onu";
     font-size: 5%;
 }
@@ -144,17 +146,17 @@ footer{
 }
 }
 
-@media all and (min-width: 1500px){
+@media all and (min-width: 1600px){
 
 #title{
         font-family: 'onu';
     display:inline-block;
-    color:rgb(255, 255, 255);
+    color:rgb(3, 41, 68);
     font-size: 1rem;
     text-align: right;
-    padding-top:0%;
+    padding-top:5px;
     padding-right: 0.3%; 
-    padding-left: 41%;
+    padding-left: 50%;
 }
 
 .logo{
@@ -162,8 +164,8 @@ footer{
     width: 10%;
     height: 100%;
     padding-left: 0.5% ;
-    padding-top:15px;
-    padding-bottom: 18px
+    padding-top:5px;
+    padding-bottom: 25px
 
     
 }
@@ -171,7 +173,7 @@ footer{
 header{
     width:100%;
     height: 8vh;
-    background-color: rgb(3, 41, 68);
+    background-color: rgb(255, 255, 255);
     font-family: "onu";
     font-size: 5%;
 }

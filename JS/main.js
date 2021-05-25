@@ -2,7 +2,7 @@ function displaywelcome() {
     Swal.fire({
 
         icon: 'info',
-        text: 'Bienvenidos al visor de metrópolis binacionales en Ámerica Latina y el Caribe.' +
+        html: 'Bienvenidos al visor de <strong> aglomerados urbanos y metrópolis binacionales en América Latina y el Caribe. </strong>' +
             ' Puedes hacer click en cada ubicación para ver cada una de las ciudades a detalle'
     }
     )
@@ -77,17 +77,17 @@ const geoJsonLayer = L.geoJson(ciudades, {
 
         if (!properties.Anotación) {
 
-            layer.bindPopup("<h1> Metrópolis binacionales</h1> <br> <table class='table table-striped table-bordered'> <tr> <td> <strong> Ciudades </strong> </td> <td>" + properties.Name + " </td> </tr>" +
+            layer.bindPopup("<h2> Aglomerados urbanos y metrópolis binacionales</h2> <br> <table class='table table-striped table-bordered'> <tr> <td> <strong> Ciudades </strong> </td> <td>" + properties.Name + " </td> </tr>" +
                 "<tr> <td> <strong> Países fronterizos</strong> </td> <td>" + properties.PAISES + "</td>  </tr> </table>" +
-                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-success' onClick='ClosePopup()' > Cerrar Pop Up </button> </div> <br>" +
-                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-danger' onClick='GetFullZoom()' > Volver a la vista original </button> </div> <br> "
+                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-secondary' onClick='ClosePopup()' > Cerrar </button> </div> <br>" +
+                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-info' onClick='GetFullZoom()' > Volver al inicio </button> </div> <br> "
             )
         } else {
-            layer.bindPopup("<h1> Metrópolis binacionales</h1> <br> <table class='table table-striped table-bordered'> <tr> <td> <strong> Ciudades </strong> </td> <td>" + properties.Name + " </td> </tr>" +
+            layer.bindPopup("<h2> Aglomerados urbanos y metrópolis binacionales</h2> <br> <table class='table table-striped table-bordered'> <tr> <td> <strong> Ciudades </strong> </td> <td>" + properties.Name + " </td> </tr>" +
                 "<tr> <td> <strong> Países fronterizos</strong> </td> <td>" + properties.PAISES + "</td>  </tr>" +
                 "<tr> <td> <strong> Países fronterizos</strong> </td> <td>" + properties.Anotación + "</td>  </tr> </table> " +
-                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-success' onClick='ClosePopup()' > Cerrar Pop Up </button> </div> <br>" +
-                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-danger' onClick='GetFullZoom()' > Volver a la vista original </button> </div> <br> ")
+                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-secondary' onClick='ClosePopup()' > Cerrar </button> </div> <br>" +
+                "<div class= 'd-grid gap-2'> <button type='button' class='btn btn-info' onClick='GetFullZoom()' > Volver al inicio </button> </div> <br> ")
         }
 
         layer.on('click', function (e) {
