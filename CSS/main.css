@@ -22,12 +22,9 @@ body{
     font-family: barlow
 }
 
-
-
-
 header{
     width:100%;
-    height: 11vh;
+    height: 12vh;
     background-color: rgb(3, 41, 68);
     font-family: "onu";
     font-size: 5%;
@@ -35,7 +32,7 @@ header{
 
 #mapid{
     width:100%;
-    height: 79vh;
+    height: 78vh;
     font-family: 'barlow';
 }
 
