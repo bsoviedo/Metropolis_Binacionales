@@ -89,6 +89,12 @@ h1{
     padding-left: 80px;
 }
 
+@media all and (min-width: 700px){
+    #title{
+        font-size: 0.8rem
+    }
+}
+
 @media all and (min-width: 1200px){
 
 #title{
