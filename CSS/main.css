@@ -27,7 +27,7 @@ body{
 
 header{
     width:100%;
-    height: 8vh;
+    height: 10vh;
     background-color: rgb(3, 41, 68);
     font-family: "onu";
     font-size: 5%;
@@ -35,19 +35,16 @@ header{
 
 #mapid{
     width:100%;
-    height: 92vh;
+    height: 80vh;
     font-family: 'barlow';
 }
 
-#title{
+#title{    
     font-family: 'onu';
-    display:inline-block;
     color:rgb(255, 255, 255);
-    font-size: 1.5rem;
-    text-align: right;
-    padding-top:1%;
-    padding-right: 0.3%; 
-    padding-left: 27%;
+    font-size: 1.3rem;
+    padding-top: 3%
+
 
 }
 h1{
@@ -62,23 +59,74 @@ h1{
 
 .label{
     text-align: center;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(3, 41, 68);
     color: rgb(255, 255, 255);
     font-family: 'barlow';
 }
 
 #div_table{
     text-align: center;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(3, 41, 68);
     color: rgb(255, 255, 255);
     font-family: 'barlow';
 
 }
 
 .logo{
+    display: none
+}
+
+footer{
+    width:100%;
+    height: 10vh;
+    background-color: rgb(3, 41, 68);
+}
+
+.logofooter{
+    display: inline-block;
+    width:40%;
+    height: 70%;
+    padding-top: 22px;
+    padding-left: 80px;
+}
+
+@media all and (min-width: 900px){
+
+#title{
+        font-family: 'onu';
+    display:inline-block;
+    color:rgb(255, 255, 255);
+    font-size: 1rem;
+    text-align: right;
+    padding-top:0%;
+    padding-right: 0.3%; 
+    padding-left: 41%;
+}
+
+.logo{
     display: inline-block;
     width: 10%;
-    height: 80%;
-    padding-bottom: 1%;
-    padding-left: 0.5%
+    height: 100%;
+    padding-left: 0.5% ;
+    padding-top:15px;
+    padding-bottom: 18px
+
+    
+}
+
+header{
+    width:100%;
+    height: 8vh;
+    background-color: rgb(3, 41, 68);
+    font-family: "onu";
+    font-size: 5%;
+}
+
+footer{
+    display: none
+}
+
+#mapid{
+    height: 92vh;
+}
 }
