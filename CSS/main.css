@@ -93,7 +93,7 @@ h1, h2{
 
 @media all and (min-width: 700px){
     #title{
-        font-size: 0.7rem;
+        font-size: 2rem;
         padding-bottom:3.5px;
         
     }
