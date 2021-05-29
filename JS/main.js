@@ -2,7 +2,7 @@ function displaywelcome() {
     Swal.fire({
 
         icon: 'info',
-        html: 'Bienvenidos al visor de <strong> aglomerados urbanos y metrópolis binacionales en América Latina y el Caribe. </strong>' +
+        html: 'Bienvenidos al visor de <strong> AGLOMERADOS URBANOS Y METRÓPOLIS BINACIONALES EN AMÉRICA LATINA Y EL CARIBE. </strong>' +
             ' Puedes hacer click en cada ubicación para ver cada una de las ciudades a detalle'
     }
     )
@@ -36,23 +36,37 @@ const city = L.geoJson(cities, {
         let lat = latlng.lat + 0.002
         let lng = latlng.lng - 0.003
         let position = [lat, lng]
-        if (feature.properties.Habs === null) {
+        if (feature.properties.Habs === null && feature.properties.Densidad === null) {
             return L.marker(position, {
                 icon: L.divIcon({
                     iconSize: null,
                     className: 'label',
                     html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
-                        '</td> </tr> <tr> <td> Población: </td> <td>  No hay datos disponibles </td> </tr> </table> </div> '
+                        '</td> </tr> <tr> <td> Población: </td> <td>  No hay datos disponibles </td> </tr> '+
+						'</td> </tr> <tr> <td> Densidad: </td> <td>   No hay datos disponibles   </td> </tr> </table> </div> '
                 })
             })
-
-        } else {
+		
+		}else if(feature.properties.Habs != null && feature.properties.Densidad === null) {
             return L.marker(position, {
                 icon: L.divIcon({
                     iconSize: null,
                     className: 'label',
                     html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
-                        '</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Habs + ' Habs </td> </tr> </table> </div> '
+                        '</td> </tr> <tr> <td> Población: </td> <td>'  + feature.properties.Habs +' </td> </tr> '+
+						'</td> </tr> <tr> <td> Densidad: </td> <td>   No hay datos disponibles   </td> </tr> </table> </div> '
+                })
+            })
+		
+		}
+		else {
+            return L.marker(position, {
+                icon: L.divIcon({
+                    iconSize: null,
+                    className: 'label',
+                    html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
+                        '</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Habs + ' Habs </td> </tr>' +
+						'</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Densidad + ' </td> </tr> </table> </div> '
                 })
             })
         }
