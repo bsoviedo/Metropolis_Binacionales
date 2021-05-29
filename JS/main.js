@@ -66,7 +66,7 @@ const city = L.geoJson(cities, {
                     className: 'label',
                     html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
                         '</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Habs + ' Habs </td> </tr>' +
-						'</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Densidad + ' </td> </tr> </table> </div> '
+						'</td> </tr> <tr> <td> Densidad: </td> <td>  ' + feature.properties.Densidad + ' </td> </tr> </table> </div> '
                 })
             })
         }
