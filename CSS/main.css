@@ -91,6 +91,29 @@ h1, h2{
     padding-left: 80px;
 }
 
+
+.fa, .fas {
+    font-weight: 900;
+    margin-top: 10;
+}
+
+
+.list{
+    border-top: 1px solid rgb(3, 41, 68);
+}
+
+.list:last-of-type{
+    border-bottom: 1px solid rgb(3, 41, 68);
+}
+
+h3, h4{
+    text-align: center
+}
+
+.leaflet-menu-close-button{
+    position: fixed;
+
+}
 @media all and (min-width: 700px){
     #title{
         font-size: 1.6rem;
@@ -100,6 +123,7 @@ h1, h2{
 
 
 }
+
 @media all and (min-width: 900px){
     #title{
         font-size: 2rem;
@@ -155,8 +179,9 @@ footer{
 .logo{
     display: inline-block;
     width: 10%;
+    height: 60%;
     padding-left: 0.5% ;
-    padding-bottom: 3px
+    margin-bottom: 30;
 
     
 }
@@ -174,7 +199,7 @@ footer{
 }
 
 #mapid{
-    height: 92vh;
+    height: 90vh;
 }
 }
 
@@ -214,5 +239,6 @@ footer{
 
 #mapid{
     height: 92vh;
+    
 }
 }

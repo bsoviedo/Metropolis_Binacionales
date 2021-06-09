@@ -17,7 +17,13 @@ const map = L.map('mapid', {
     zoom: 3
 });
 
+
 const base = L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',).addTo(map)
+
+
+
+
+
 
 //Functions for the PopUp
 function GetFullZoom() {
@@ -42,37 +48,45 @@ const city = L.geoJson(cities, {
                     iconSize: null,
                     className: 'label',
                     html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
-                        '</td> </tr> <tr> <td> Población: </td> <td>  No hay datos disponibles </td> </tr> '+
-						'</td> </tr> <tr> <td> Densidad: </td> <td>   No hay datos disponibles   </td> </tr> </table> </div> '
+                        '</td> </tr> <tr> <td> Población: </td> <td>  No hay datos disponibles </td> </tr> ' +
+                        '</td> </tr> <tr> <td> Densidad: </td> <td>   No hay datos disponibles   </td> </tr> </table> </div> '
                 })
             })
-		
-		}else if(feature.properties.Habs != null && feature.properties.Densidad === null) {
+
+        } else if (feature.properties.Habs != null && feature.properties.Densidad === null) {
             return L.marker(position, {
                 icon: L.divIcon({
                     iconSize: null,
                     className: 'label',
                     html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
-                        '</td> </tr> <tr> <td> Población: </td> <td>'  + feature.properties.Habs +' </td> </tr> '+
-						'</td> </tr> <tr> <td> Densidad: </td> <td>   No hay datos disponibles   </td> </tr> </table> </div> '
+                        '</td> </tr> <tr> <td> Población: </td> <td>' + feature.properties.Habs + ' </td> </tr> ' +
+                        '</td> </tr> <tr> <td> Densidad: </td> <td>   No hay datos disponibles   </td> </tr> </table> </div> '
                 })
             })
-		
-		}
-		else {
+
+        }
+        else {
             return L.marker(position, {
                 icon: L.divIcon({
                     iconSize: null,
                     className: 'label',
                     html: '<div> <table class="table table-bordered" id="div_table"> <tr> <td> Nombre:</td> <td>' + feature.properties.Cities +
                         '</td> </tr> <tr> <td> Población: </td> <td>  ' + feature.properties.Habs + ' Habs </td> </tr>' +
-						'</td> </tr> <tr> <td> Densidad: </td> <td>  ' + feature.properties.Densidad + ' </td> </tr> </table> </div> '
+                        '</td> </tr> <tr> <td> Densidad: </td> <td>  ' + feature.properties.Densidad + ' </td> </tr> </table> </div> '
                 })
             })
         }
 
+    }, onEachFeature: function (feature, layer) {
+        feature.layer = layer;
     }
-})
+}
+)
+
+
+
+
+
 
 //Load layer
 const geoJsonLayer = L.geoJson(ciudades, {
@@ -87,6 +101,7 @@ const geoJsonLayer = L.geoJson(ciudades, {
         });
     },
     onEachFeature: function (feature, layer) {
+
         const { properties } = layer.feature
 
         if (!properties.Anotación) {
@@ -152,8 +167,77 @@ map.on('zoomend', function (e) {
     let zoomlevel = map.getZoom();
     if (zoomlevel < 13) {
         map.removeLayer(city)
+    } else {
+        map.addLayer(city)
     }
 
 })
 
 
+
+/*----------Barra de busqueda---------------*/
+
+const SearchCity = L.geoJson(cities, {
+    pointToLayer: function (feature, latlng) {
+        let lat = latlng.lat + 0.002
+        let lng = latlng.lng - 0.003
+        let position = [lat, lng]
+        return L.marker(position, {
+            icon: L.divIcon({
+                iconSize: null,
+                className: 'test'
+            })
+        })
+
+    }
+}
+)
+
+
+let searchControl = new L.Control.Search({
+    layer: SearchCity,
+    propertyName: 'Cities',
+    circleLocation: true
+});
+
+
+
+map.addControl(searchControl);
+
+//Añade slide menu
+
+
+const right = '<br> <br> <h3>Lista de metrópolis binacionales en américa latina y el caribe</h3>';
+
+let content = '';
+
+for (let i = 0; i < ciudades.features.length; i++) {
+    console.log(ciudades.features[i].properties)
+    if (ciudades.features[i].properties.Anotación === null) {
+
+        content += `<div class='list'> <strong> ${i + 1} ) </strong> <br> <strong> Ciudades que forman el aglomerado: </strong> ${ciudades.features[i].properties.Name} <br> <strong> Países del aglomerado:  </strong>${ciudades.features[i].properties.PAISES} <br><br> </div>`
+    } else {
+        content += `<div class='list'> <strong> ${i + 1} ) </strong> <br> <strong> Ciudades que forman el aglomerado: </strong> ${ciudades.features[i].properties.Name} <br> <strong> Países del aglomerado: </strong> ${ciudades.features[i].properties.PAISES} <br> <strong> Anotaciones: </strong> ${ciudades.features[i].properties.Anotación} <br> </div>`
+    }
+}
+
+
+
+
+
+
+/* "<br>  <p> Esta página esta construida llamando los datos desde un geojson, debido a las limitaciones que se posee al no tener " +
+    "un servidor que pueda estar conectado desplegando los datos de geoserver las 24 horas del día. Hay que " +
+    "recordar que geoserver debe estar instalado y debe correr 24/7 en un servidor para poder ser accesible siempre. <br> <br> De igual manera construí una página que " +
+    "llama las capas alojadas en geoserver como un servicio WMS, el cual se puede ver en este <a href= 'https://bsoviedoy.github.io/ICC-WMS/geovisor_WMS/index.html' alt='Enlace página geoserver'> enlace. </a>"; */
+content += "<br> <h4>Metadatos </h4>"
+content += "Epsg: 4326 <br>"
+content += "Datum: Magna-Sirgas <br> "
+
+
+const slide = L.control.slideMenu('', {
+    position: 'topright', menuposition: 'topright',
+    width: '30%', height: '400px', delay: '20', icon: 'fas fa-bars'
+}).addTo(map);
+
+slide.setContents(right + content);
